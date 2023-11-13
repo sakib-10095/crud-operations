@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect,HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
+from myapp.models import employee
 
 
 
@@ -45,7 +46,42 @@ def loginPage(request):
 
 
 def homePage(request):
-    return render(request,"home.html")
+    emp=employee.objects.all()
+    return render(request,"home.html",{"emp":emp})
+
+
+def AddPage(request):
+    if request.method=="POST":
+        myuname=request.POST.get("name")
+        myemail=request.POST.get("email")
+        myaddress=request.POST.get("address")
+        myphone=request.POST.get("phone")
+
+        emp=employee(
+           name=myuname,
+           email=myemail,
+           address=myaddress,
+           phone=myphone,
+        )
+        emp.save()
+    return redirect("homePage")
+
+def updatePage(request,id):
+    if request.method=="POST":
+        myuname=request.POST.get("name")
+        myemail=request.POST.get("email")
+        myaddress=request.POST.get("address")
+        myphone=request.POST.get("phone")
+
+        emp=employee(
+            id=id,
+           name=myuname,
+           email=myemail,
+           address=myaddress,
+           phone=myphone,
+        )
+        emp.save()
+    return redirect("homePage")
 
 
 
