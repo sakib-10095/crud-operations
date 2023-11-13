@@ -66,6 +66,11 @@ def AddPage(request):
         emp.save()
     return redirect("homePage")
 
+def editPage(request):
+    emp=employee.objects.all()
+    return render(request,"home.html",{"emp":emp})
+
+
 def updatePage(request,id):
     if request.method=="POST":
         myuname=request.POST.get("name")
@@ -81,6 +86,12 @@ def updatePage(request,id):
            phone=myphone,
         )
         emp.save()
+    return redirect("homePage")
+
+
+def deletePage(request,id):
+    emp=employee.objects.filter(id=id)
+    emp.delete()
     return redirect("homePage")
 
 

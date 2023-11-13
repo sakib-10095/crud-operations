@@ -25,10 +25,9 @@ urlpatterns = [
     path('homePage/', views.homePage, name="homePage"),
     path('logoutPage/', views.logoutPage, name="logoutPage"),
     path('AddPage/', views.AddPage, name="AddPage"),
-    #  path('editPage/', views.editPage, name="editPage"),
+    path('editPage/', views.editPage, name="editPage"),
     path('updatePage/<str:id>', views.updatePage, name="updatePage"),
-   
-
+    path('deletePage/<str:id>', views.deletePage, name="deletePage"),
 
 ]
 

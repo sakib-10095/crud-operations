@@ -7,3 +7,5 @@ class employee(models.Model):
     address=models.TextField()
     phone=models.IntegerField()
 
+
+
